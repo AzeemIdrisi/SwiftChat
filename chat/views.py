@@ -61,3 +61,9 @@ def getMessages(request, room):
     room_details = Room.objects.get(name=room)
     messages = Message.objects.filter(room=room_details)
     return JsonResponse({"messages": list(messages.values())})
+
+
+def delete(request, room):
+    room_details = Room.objects.get(name=room)
+    room_details.delete()
+    return redirect("home")

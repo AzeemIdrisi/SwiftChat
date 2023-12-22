@@ -9,7 +9,10 @@ body {
   max-width: 800px;
   padding: 0 20px;
 }
-
+a{
+  
+  text-decoration:none;
+}
 h1{
   margin:0;
 }
@@ -56,6 +59,7 @@ h1{
   color: #999;
 }
     </style>
+    <title>SwiftChat</title>
   </head>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap"
         rel="stylesheet">
@@ -118,4 +122,7 @@ h1{
     </p>
     {% if wrong_password %}<script>alert("{{message}}")</script>{% endif %}
   </body>
+  <footer align="center">
+    <a href="https://github.com/AzeemIdrisi/SwiftChat">Report an issue</a>
+  </footer>
 </html>
