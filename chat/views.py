@@ -23,11 +23,23 @@ def room(request, room):
 def checkview(request):
     room = request.POST["room_name"]
     username = request.POST["username"]
+    password = request.POST["password"]
 
     if Room.objects.filter(name=room).exists():
-        return redirect(room + "/?username=" + username)
+        room_details = Room.objects.get(name=room)
+        if room_details.password == password:
+            return redirect(room + "/?username=" + username)
+        else:
+            return render(
+                request,
+                "home.html",
+                {
+                    "wrong_password": True,
+                    "message": "Wrong Password or Room ID not available",
+                },
+            )
     else:
-        new_room = Room.objects.create(name=room)
+        new_room = Room.objects.create(name=room, password=password)
         new_room.save()
         return redirect(room + "/?username=" + username)
 
@@ -37,6 +49,8 @@ def send(request):
     username = request.POST["username"]
     room_id = request.POST["room_id"]
     room = Room.objects.get(id=room_id)
+    if len(username) == 0:
+        username = "Anonymous"
     new_message = Message.objects.create(text=message, user=username, room=room)
     new_message.save()
     return HttpResponse("Message sent.")
