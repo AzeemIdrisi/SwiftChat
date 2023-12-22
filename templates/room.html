@@ -79,7 +79,20 @@ setInterval(function(){
             $("#display").empty();
             for (var key in response.messages)
             {
-                var temp="<div class='container darker'><b>"+response.messages[key].user+"</b><p>"+response.messages[key].text+"</p><span class='time-left'>"+response.messages[key].date+"</span></div>";
+              var serverTimestamp = new Date(response.messages[key].date);
+
+              // Format the date
+              var optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+              var formattedDate = serverTimestamp.toLocaleDateString(undefined, optionsDate);
+          
+              // Format the time
+              var optionsTime = { hour: 'numeric', minute: 'numeric', hour12: true };
+              var formattedTime = serverTimestamp.toLocaleTimeString(undefined, optionsTime);
+              var space =" ";
+              
+
+
+                var temp="<div class='container darker'><b>"+response.messages[key].user+"</b><p>"+response.messages[key].text+"</p><span class='time-left'>"+formattedDate+space+formattedTime+"</span></div>";
                 $("#display").append(temp);
             }
         },
