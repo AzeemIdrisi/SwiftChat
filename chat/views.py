@@ -21,7 +21,7 @@ def room(request, room):
 
 
 def checkview(request):
-    room = request.POST["room_name"]
+    room = str(request.POST["room_name"]).lower().strip()
     username = request.POST["username"]
     password = request.POST["password"]
 
@@ -51,8 +51,9 @@ def send(request):
     room = Room.objects.get(id=room_id)
     if len(username) == 0:
         username = "Anonymous"
-    new_message = Message.objects.create(text=message, user=username, room=room)
-    new_message.save()
+    if len(message) > 0:
+        new_message = Message.objects.create(text=message, user=username, room=room)
+        new_message.save()
     return HttpResponse("Message sent.")
 
 
