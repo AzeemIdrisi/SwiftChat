@@ -62,6 +62,10 @@
         padding: 0.5rem;
         border-radius: 10px;
         margin: 0.5rem;
+        font-weight: 600;
+      }
+      .exit{
+        padding:.5rem 1rem;
       }
       .exit:hover {
         cursor: pointer;
@@ -100,10 +104,10 @@
       <h2>Room ID: {{ room }}</h2>
       <div class="buttons">
         <a href="{% url 'home' %}">
-          <div class="exit">Exit Room</div>
+          <div class="exit">Exit</div>
         </a>
         <a href="{% url 'delete' room %}">
-          <div class="delete">Delete Room</div>
+          <div class="delete">Delete</div>
         </a>
       </div>
     </div>
@@ -185,6 +189,7 @@
           border: none;
           border-radius: 4px;
           cursor: pointer;
+          font-size: larger;
         }
 
         input[type="submit"]:hover {
