@@ -1,12 +1,18 @@
 from django.shortcuts import render, redirect
 from .models import Room, Message
 from django.http import HttpResponse, JsonResponse
+from django.urls import reverse
 
 # Create your views here.
 
 
 def home(request):
-    return render(request, "home.html")
+    message = request.session.get("message")
+    request.session["message"] = None
+    context = {
+        "message": message,
+    }
+    return render(request, "home.html", context)
 
 
 def room(request, room):
@@ -34,7 +40,6 @@ def checkview(request):
                 request,
                 "home.html",
                 {
-                    "wrong_password": True,
                     "message": "Wrong Password or Room ID not available",
                 },
             )
@@ -66,4 +71,6 @@ def getMessages(request, room):
 def delete(request, room):
     room_details = Room.objects.get(name=room)
     room_details.delete()
+    request.session["message"] = f"Room [{room}] deleted successfully."
+
     return redirect("home")

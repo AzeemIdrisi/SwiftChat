@@ -109,7 +109,11 @@ h1{
       <form id="post-form" method="POST" action="checkview">
         {% csrf_token %}
         <label>Display Name</label>
-        <input type="text" name="username" id="username" width="100px" />
+        <input type="text"
+               name="username"
+               id="username"
+               width="100px"
+               placeholder="Enter a username" />
         <label>Room ID</label>
         <input type="text"
                name="room_name"
@@ -117,14 +121,18 @@ h1{
                width="100px"
                placeholder="Create New or Join" />
         <label>Password</label>
-        <input type="password" name="password" id="password" width="100px" />
+        <input type="password"
+               name="password"
+               id="password"
+               width="100px"
+               placeholder="Enter Password" />
         <input type="submit" value="Enter Room">
       </form>
     </div>
     <p align='center'>
       Ask your partner to enter the same <span class="bold">Room ID</span> and <span class="bold">Password</span> to start a conversation.
     </p>
-    {% if wrong_password %}<script>alert("{{message}}")</script>{% endif %}
+    {% if message is not None %}<script>alert("{{message}}")</script>{% endif %}
   </body>
   <footer align="center">
     <a href="https://github.com/AzeemIdrisi/SwiftChat">Report an issue</a>
