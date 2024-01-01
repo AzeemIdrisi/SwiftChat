@@ -27,7 +27,7 @@ def room(request, room):
 
 
 def checkview(request):
-    room = str(request.POST["room_name"]).lower().strip()
+    room = str(request.POST["room_name"]).upper().strip()
     username = request.POST["username"]
     password = request.POST["password"]
 
