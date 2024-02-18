@@ -6,6 +6,7 @@ from django.db import models
 class Room(models.Model):
     name = models.CharField(max_length=1000)
     password = models.CharField(max_length=1000)
+    session_key = models.CharField(max_length=1000, null=True)
 
     def __str__(self) -> str:
         return self.name

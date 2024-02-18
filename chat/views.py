@@ -17,16 +17,20 @@ def home(request):
 
 def room(request, room):
     username = request.GET.get("username")
+    error = request.GET.get("error")
     room_details = Room.objects.get(name=room)
     context = {
         "username": username,
         "room": room,
         "room_details": room_details,
+        "error": error,
     }
     return render(request, "room.html", context)
 
 
 def checkview(request):
+    if not request.session.session_key:
+        request.session.create()
     room = str(request.POST["room_name"]).upper().strip()
     username = request.POST["username"]
     password = request.POST["password"]
@@ -34,7 +38,7 @@ def checkview(request):
     if Room.objects.filter(name=room).exists():
         room_details = Room.objects.get(name=room)
         if room_details.password == password:
-            return redirect(room + "/?username=" + username)
+            return redirect("room/" + room + "/?username=" + username)
         else:
             return render(
                 request,
@@ -44,9 +48,11 @@ def checkview(request):
                 },
             )
     else:
-        new_room = Room.objects.create(name=room, password=password)
+        new_room = Room.objects.create(
+            name=room, password=password, session_key=request.session.session_key
+        )
         new_room.save()
-        return redirect(room + "/?username=" + username)
+        return redirect("room/" + room + "/?username=" + username)
 
 
 def send(request):
@@ -69,8 +75,19 @@ def getMessages(request, room):
 
 
 def delete(request, room):
-    room_details = Room.objects.get(name=room)
-    room_details.delete()
-    request.session["alertMessage"] = f"{room}"
 
-    return redirect("home")
+    # If room had already been deleted
+    if not Room.objects.filter(name=room).exists():
+        request.session["alertMessage"] = f"{room}"
+        return redirect("home")
+    else:
+        # If room still exists
+        room_details = Room.objects.get(name=room)
+        # checking for creator
+        if room_details.session_key == request.session.session_key:
+            room_details.delete()
+            request.session["alertMessage"] = f"{room}"
+            return redirect("home")
+        else:
+            url = reverse("room", kwargs={"room": room})
+            return redirect(url + "?error=1")
