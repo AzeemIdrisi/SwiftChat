@@ -22,10 +22,22 @@
       <h1>SwiftChat</h1>
       <p>Direct Messaging Without Login</p>
     </div>
-    {% if message is not None %}
+    {% if alertMessage is not None %}
     <br />
     <div class="alert alert-success alert-dismissible" role="alert">
-      {{message}}
+      Room <span class="bold">{{alertMessage}}</span> deleted successfully.
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {% endif %} {% if error %}
+    <br />
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <span class="bold">Wrong Password</span> or
+      <span class="bold">Room ID</span> is currently unavailable
       <button
         type="button"
         class="btn-close"

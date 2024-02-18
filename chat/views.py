@@ -7,10 +7,10 @@ from django.urls import reverse
 
 
 def home(request):
-    message = request.session.get("message")
-    request.session["message"] = None
+    message = request.session.get("alertMessage")
+    request.session["alertMessage"] = None
     context = {
-        "message": message,
+        "alertMessage": message,
     }
     return render(request, "home.html", context)
 
@@ -40,7 +40,7 @@ def checkview(request):
                 request,
                 "home.html",
                 {
-                    "message": "Wrong Password or Room ID not available",
+                    "error": 1,
                 },
             )
     else:
@@ -71,6 +71,6 @@ def getMessages(request, room):
 def delete(request, room):
     room_details = Room.objects.get(name=room)
     room_details.delete()
-    request.session["message"] = f'Room "{room}" deleted successfully.'
+    request.session["alertMessage"] = f"{room}"
 
     return redirect("home")
