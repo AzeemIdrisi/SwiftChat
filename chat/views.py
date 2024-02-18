@@ -71,6 +71,6 @@ def getMessages(request, room):
 def delete(request, room):
     room_details = Room.objects.get(name=room)
     room_details.delete()
-    request.session["message"] = f"Room [{room}] deleted successfully."
+    request.session["message"] = f'Room "{room}" deleted successfully.'
 
     return redirect("home")
