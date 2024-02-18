@@ -1,104 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
   <head>
     <title>SwiftChat</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      body {
-        font-family: "Poppins";
-        margin: 0 auto;
-        max-width: 800px;
-        padding: 0 20px;
-      }
 
-      .container {
-        border: 2px solid #dedede;
-        background-color: #f1f1f1;
-        border-radius: 5px;
-        padding: 10px;
-        margin: 10px 0;
-      }
-
-      .darker {
-        border-color: #ccc;
-        background-color: #ddd;
-      }
-
-      .container::after {
-        content: "";
-        clear: both;
-        display: table;
-      }
-
-      .container img {
-        float: left;
-        max-width: 60px;
-        width: 100%;
-        margin-right: 20px;
-        border-radius: 50%;
-      }
-
-      .container img.right {
-        float: right;
-        margin-left: 20px;
-        margin-right: 0;
-      }
-
-      .time-right {
-        float: right;
-        color: #aaaaaa;
-      }
-
-      .time-left {
-        float: left;
-        color: #999;
-      }
-
-      .exit,
-      .delete {
-        color: white;
-        background: rgb(0, 162, 255);
-        width: fit-content;
-        padding: 0.5rem;
-        border-radius: 10px;
-        margin: 0.5rem;
-        font-weight: 600;
-      }
-      .exit{
-        padding:.5rem 1rem;
-      }
-      .exit:hover {
-        cursor: pointer;
-        background: rgb(0, 127, 201);
-      }
-      .delete:hover {
-        cursor: pointer;
-        background: rgb(182, 0, 0);
-      }
-      .delete {
-        background: red;
-      }
-
-      .buttons {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      a {
-        text-decoration: none;
-      }
-    </style>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-            crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"
+    ></script>
   </head>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap"
-        rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="{% static 'chat/room.css'%}" />
   <body>
     <div class="top">
       <h2>Room ID: {{ room }}</h2>
@@ -164,7 +81,7 @@
             //  alert('An error occured')
             //}
           });
-        }, 1000);
+        }, 10);
       });
     </script>
     <div class="container">
@@ -204,16 +121,25 @@
       </style>
       <form id="post-form">
         {% csrf_token %}
-        <input type="hidden" name="username" id="username" value="{{ username }}" />
-        <input type="hidden"
-               name="room_id"
-               id="room_id"
-               value="{{ room_details.id }}" />
-        <input type="text"
-               name="message"
-               id="message"
-               width="100px"
-               placeholder="Enter message" />
+        <input
+          type="hidden"
+          name="username"
+          id="username"
+          value="{{ username }}"
+        />
+        <input
+          type="hidden"
+          name="room_id"
+          id="room_id"
+          value="{{ room_details.id }}"
+        />
+        <input
+          type="text"
+          name="message"
+          id="message"
+          width="100px"
+          placeholder="Enter message"
+        />
         <input type="submit" value="Send" />
       </form>
     </div>

@@ -1,0 +1,88 @@
+body {
+  font-family: "Poppins";
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right: 0;
+}
+
+.time-right {
+  float: right;
+  color: #aaaaaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+
+.exit,
+.delete {
+  color: white;
+  background: rgb(0, 162, 255);
+  width: fit-content;
+  padding: 0.5rem;
+  border-radius: 10px;
+  margin: 0.5rem;
+  font-weight: 600;
+}
+.exit {
+  padding: 0.5rem 1rem;
+}
+.exit:hover {
+  cursor: pointer;
+  background: rgb(0, 127, 201);
+}
+.delete:hover {
+  cursor: pointer;
+  background: rgb(182, 0, 0);
+}
+.delete {
+  background: red;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+a {
+  text-decoration: none;
+}
