@@ -91,3 +91,7 @@ div {
 .bold {
   font-weight: 600;
 }
+
+.icon {
+  max-width: 70px;
+}

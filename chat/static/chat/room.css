@@ -104,3 +104,11 @@ div.display {
 .bold {
   font-weight: bold;
 }
+
+.icon {
+  max-width: 35px;
+}
+
+a.navbar-brand {
+  font-weight: bold;
+}

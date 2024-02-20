@@ -9,6 +9,7 @@ a {
 }
 h1 {
   margin: 0;
+  font-weight: bold;
 }
 .container {
   border: 2px solid #dedede;
@@ -89,4 +90,8 @@ div {
 
 .bold {
   font-weight: 600;
+}
+
+.icon {
+  max-width: 70px;
 }
