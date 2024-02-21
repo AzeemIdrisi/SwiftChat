@@ -1,12 +1,17 @@
 <div align="center" >
-    
+
+<a href="https://SwiftChat.pythonanywhere.com/">
+<img width=100 src="./static/chat/icon.png">
+</a>
+
 # [SwiftChat](https://SwiftChat.pythonanywhere.com/)
 
 [SwiftChat](https://SwiftChat.pythonanywhere.com/) is a web application built with Django that enables users to engage in real-time conversations by entering a chat room through its unique ID. The app leverages AJAX technology to facilitate the seamless exchange of messages, providing an interactive and dynamic user experience.
 
-<img align="center" height="500px" src="https://github.com/AzeemIdrisi/SwiftChat/assets/112647789/60a2a03b-4085-486a-a17f-bf68d3c5f2f8">
-....................
-<img align="center" height="500px" src="https://github.com/AzeemIdrisi/SwiftChat/assets/112647789/a98ff877-a50f-45bf-b0fe-b7ef712bbdfb">
+<img align="center" height="500px" src="https://github.com/AzeemIdrisi/SwiftChat/assets/112647789/3236952b-6a96-48d3-b90d-09cfe6b9fb3a">
+
+<img align="center" height="500px" src="https://github.com/AzeemIdrisi/SwiftChat/assets/112647789/54d9f77f-6a64-4b2d-becf-f1360813be3e">
+    
 </div>
 
 ## Features
