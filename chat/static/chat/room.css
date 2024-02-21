@@ -39,6 +39,8 @@ body {
 }
 
 .time-right {
+  font-weight: normal;
+  font-size: small;
   float: right;
   color: #aaaaaa;
 }

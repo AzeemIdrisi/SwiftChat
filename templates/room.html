@@ -69,9 +69,9 @@
 
                 // Format the date
                 var optionsDate = {
-                  weekday: "long",
+                  weekday: "short",
                   year: "numeric",
-                  month: "long",
+                  month: "short",
                   day: "numeric",
                 };
                 var formattedDate = serverTimestamp.toLocaleDateString(
@@ -94,13 +94,14 @@
                 var temp =
                   "<div class='container darker'><b>" +
                   response.messages[key].user +
-                  "</b><p>" +
-                  response.messages[key].text +
-                  "</p><span class='time-left'>" +
+                  "<span class='time-right'>" +
                   formattedDate +
-                  space +
+                  "</span></b>" +
+                  "<p>" +
+                  response.messages[key].text +
+                  "<span class='time-right'>" +
                   formattedTime +
-                  "</span></div>";
+                  "</span></p></div>";
                 $("#display").append(temp);
               }
             },
