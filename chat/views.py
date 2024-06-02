@@ -22,6 +22,8 @@ def room(request, room):
     username = request.GET.get("username")
     error = request.GET.get("error")
     room_details = Room.objects.get(name=room)
+    if room_details.id != request.session["user_id"]:
+        return redirect("home")
     context = {
         "username": username,
         "room": room,
@@ -56,7 +58,7 @@ def checkview(request):
             name=room, password=password, session_key=request.session.session_key
         )
         new_room.save()
-        request.session["user_id"] = room_details.id
+        request.session["user_id"] = new_room.id
         return redirect("room/" + room + "/?username=" + username)
 
 
@@ -92,6 +94,7 @@ def delete(request, room):
         if room_details.session_key == request.session.session_key:
             room_details.delete()
             request.session["alertMessage"] = f"{room}"
+            request.session["user_id"] = None
             return redirect("home")
         else:
             url = reverse("room", kwargs={"room": room})
