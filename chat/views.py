@@ -16,6 +16,9 @@ def home(request):
 
 
 def room(request, room):
+
+    if "user_id" not in request.session:
+        return redirect("home")
     username = request.GET.get("username")
     error = request.GET.get("error")
     room_details = Room.objects.get(name=room)
@@ -38,6 +41,7 @@ def checkview(request):
     if Room.objects.filter(name=room).exists():
         room_details = Room.objects.get(name=room)
         if room_details.password == password:
+            request.session["user_id"] = room_details.id
             return redirect("room/" + room + "/?username=" + username)
         else:
             return render(
@@ -52,6 +56,7 @@ def checkview(request):
             name=room, password=password, session_key=request.session.session_key
         )
         new_room.save()
+        request.session["user_id"] = room_details.id
         return redirect("room/" + room + "/?username=" + username)
 
 
